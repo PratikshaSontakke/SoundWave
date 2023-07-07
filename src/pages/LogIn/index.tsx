@@ -4,7 +4,7 @@ import { Input } from "../../components/ui/input";
 
 
 const Login = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
     // Get the username and password from the form data
     const { username, password } = data;
