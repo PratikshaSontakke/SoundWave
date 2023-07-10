@@ -1,62 +1,100 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
+interface FormValues {
+  username: string;
+  password: string;
+}
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
-    // Get the username and password from the form data
-    const { username, password } = data;
+  const [showPassword, setShowPassword] = useState(false);
 
-    // Store the username and password in localStorage
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
+  const navigate = useNavigate();
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const { register, handleSubmit } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    const { username } = data;
+    Cookies.set("authUser", username, {
+      expires: new Date(Date.now() + 60000),
+    });
+    navigate(0);
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <Input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            defaultValue="username" {...register("username")}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-gray-80 min-h-screen flex items-center justify-center"
+    >
+      <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center mx-4 my-4">
+        <div className="md:w-1/2 px-8 md:px-16">
+          <h2 className="font-bold text-2xl text-[#002D74]">
+            Experience the Soundwave platform by signing in!
+          </h2>
+
+          <div className="flex flex-col gap-4">
+            <Input
+              required
+              className="p-2 mt-8 rounded-xl border"
+              {...register("username")}
+              placeholder="User Name"
+            />
+            <div className="relative">
+              <Input
+                required
+                className="p-2 rounded-xl border w-full"
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                placeholder="Password"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="gray"
+                className="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2"
+                viewBox="0 0 16 16"
+                onClick={togglePasswordVisibility}
+              >
+                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+
+                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+
+                {showPassword && (
+                  <line
+                    x1="4"
+                    y1="4"
+                    x2="12"
+                    y2="12"
+                    stroke="gray"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                  />
+                )}
+                <path d="M2" />
+              </svg>
+            </div>
+            <Button type="submit">Login</Button>
+          </div>
+        </div>
+
+        {/* <!-- image --> */}
+        <div className="md:block hidden w-1/2">
+          <img
+            className="rounded-2xl"
+            src="https://images.pexels.com/photos/13244401/pexels-photo-13244401.jpeg?auto=compress&cs=tinysrgb&w=400"
           />
         </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <Input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            defaultValue="password" {...register("password")}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <Button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </Button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
 export default Login;
-

@@ -1,24 +1,32 @@
-import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
+import Login from "./pages/LogIn";
+import ProtectedLayout from "./layouts/ProtectedLayout";
 import RootLayout from "./layouts/RootLayout";
-import LogIn from "./pages/LogIn";
 
-export const routes = [
+export const publicRoutes = [
   {
     path: "/",
-    element: <RootLayout> <Home /> </RootLayout>,
-    errorElement: <NotFound />,
-    loader: () => <>Loading...</>,
-    // children: [
-    //   {
-    //     path: "/protected",
-    //     element: <Protected />,
-    //   }
-    // ],
+    element: <RootLayout />,
+    // errorElement: <NotFound />,
+    children: [{ path: "/", element: <Login /> }],
   },
   {
-    path: "login",
-    element: <RootLayout> <LogIn /> </RootLayout>,
+    path: "*",
+    element: <NotFound />,
+  },
+];
 
-  }
-]
+export const authRoutes = [
+  {
+    path: "/",
+    element: <ProtectedLayout />,
+    // errorElement: <NotFound />,
+    loader: () => <>Loading...</>,
+    children: [{ path: "/", element: <Home /> }],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+];
