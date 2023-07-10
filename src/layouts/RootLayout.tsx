@@ -1,15 +1,7 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-type Props = {
-    children: React.ReactNode
-}
+import { Outlet } from "react-router-dom";
 
-function RootLayout({ children }: Props) {
-    return (
-        <div className='bg-black h-screen'>
-            {children}
-            <Outlet /></div>
-    )
-}
+const RootLayout = () => {
+    return <Outlet />;
+};
 
-export default RootLayout
+export default RootLayout;

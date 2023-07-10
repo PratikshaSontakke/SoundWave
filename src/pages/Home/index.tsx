@@ -1,9 +1,15 @@
-import Header from '../../components/layouts/Header'
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate()
   return (
     <div >
-      <Header />
+      <button onClick={() => {
+        Cookies.remove("authUser");
+        //Reloads page
+        navigate(0)
+
+      }}> Logout </button>
     </div>
 
   )
