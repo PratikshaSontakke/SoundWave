@@ -1,10 +1,10 @@
-import Banner from "../../assets/Images/logo.svg"
+import Banner from "../../assets/Images/Sound Wave-logos_black.png";
 function Logo() {
-    return (
-        <div className='logo h-15 w-24 ml-8'>
-            <img src={Banner} alt="SoundWave" />
-        </div>
-    )
+  return (
+    <div className="logo h-25 w-25 -mt-10">
+      <img src={Banner} alt="SoundWave" />
+    </div>
+  );
 }
 
-export default Logo
+export default Logo;
