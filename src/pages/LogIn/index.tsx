@@ -1,62 +1,99 @@
-import { useForm } from "react-hook-form";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
+import { Controller, useForm } from "react-hook-form";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod"; // Import zod
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schema } from "./helper";
+import { Card, CardContent, CardTitle } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
 
+
+type FormSchemaType = z.infer<typeof schema>;
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
-    // Get the username and password from the form data
-    const { username, password } = data;
+  const navigate = useNavigate();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(schema),
+    defaultValues: { username: "", password: "" },
+  });
 
-    // Store the username and password in localStorage
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-
+  const onSubmit = (data: FormSchemaType) => {
+    try {
+      // Validate form data against the schema
+      const { username } = data;
+      const expirationTime = 20 * 60 * 1000
+      Cookies.set("authUser", username, {
+        expires: new Date(Date.now() + expirationTime),
+      });
+      navigate(0);
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <Input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            defaultValue="username" {...register("username")}
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <Input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            defaultValue="password" {...register("password")}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <Button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Sign In
-          </Button>
-        </div>
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="min-h-screen flex items-center justify-center"
+    >
+      <Card className="flex rounded-2xl shadow-lg max-w-3xl p-5 items-center mx-4 my-4">
+        <CardContent className="px-4 md:px-8 md:flex md:items-center md:gap-8">
+          <div className="md:w-1/2">
+            <CardTitle>
+              Experience the Soundwave platform by signing in!
+            </CardTitle>
+            <div className="flex flex-col my-10">
+              <Controller
+                control={control}
+                name="username"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Input
+                    className="rounded-xl border"
+                    {...field}
+                    autoComplete="username"
+                    placeholder="User Name"
+                    error={errors?.username?.message}
+                  />
+                )}
+              />
+
+              <Controller
+                control={control}
+                name="password"
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <Input
+                    className="rounded-xl border mt-8"
+                    {...field}
+                    autoComplete="current-password"
+                    placeholder="Password"
+                    type="password"
+                    error={errors?.password?.message}
+                  />
+                )}
+              />
+            </div>
+
+            <Button type="submit">Login</Button>
+          </div>
+
+          {/* <!-- image --> */}
+          <div className="hidden md:block">
+            <img
+              className="rounded-2xl"
+              src="https://images.pexels.com/photos/13244401/pexels-photo-13244401.jpeg?auto=compress&cs=tinysrgb&w=400"
+            />
+          </div>
+        </CardContent>
+      </Card>
+    </form>
   );
 };
 
 export default Login;
-
