@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Menu, Power, X } from "lucide-react";
+import { Menu, Power } from "lucide-react";
 import Cookies from "js-cookie";
 import Logo from "@/assets/Logo/Logo";
 import { Button } from "./ui/Button";
