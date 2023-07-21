@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { Input } from "./Input";
 
+
 interface SearchBarProps {
   onSearch: (e: any) => void;
   placeholder?: string;
@@ -10,7 +11,7 @@ const Searchbar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
   return (
     <div className="relative block">
       <span className="sr-only">Search</span>
-      <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+      <span className="absolute  inset-y-0 left-0 flex items-center pl-2">
         <Search size={20} />
       </span>
       <Input
