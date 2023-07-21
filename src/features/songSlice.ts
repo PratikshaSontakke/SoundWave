@@ -1,5 +1,6 @@
-import { getSongList } from '@/apis/SongApi';
+
 import { PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import { getSongList } from '../apis/SongApi';
 
 interface SongsState {
     songs: Song[];

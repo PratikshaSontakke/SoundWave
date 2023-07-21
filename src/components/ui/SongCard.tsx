@@ -18,7 +18,7 @@ const SongCard = (props: AudioProps) => {
 
 
   return (
-    <Card className="bg-card transition-transform transform hover:scale-110">
+    <Card className="bg-card  transition-transform transform hover:scale-110">
       <CardContent className="shadow-lg rounded p-2 h-full">
         <div className="group relative">
           <img className="rounded w-full h-[16rem]" src={imageUrl} alt="Song cover" />
@@ -37,7 +37,7 @@ const SongCard = (props: AudioProps) => {
           </div>
         </div>
         <CardDescription>
-         <div className="mt-3 -mb-5 text-base text-accent italic"> {trackName}</div> <br />
+         <div className="mt-3 -mb-5 text-base  text-accent italic"> {trackName}</div> <br />
           {artistName}
         </CardDescription>
       </CardContent>

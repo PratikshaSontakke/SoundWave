@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Menu, Power } from "lucide-react";
 import Cookies from "js-cookie";
-import Logo from "@/assets/Logo/Logo";
 import { Button } from "./ui/Button";
 import {
   Sheet,
@@ -11,10 +10,12 @@ import {
   SheetTitle,
   SheetDescription,
 } from "./ui/Sheet";
-import Searchbar from "@/components/ui/Searchbar";
+
+import Logo from "../assets/Logo/Logo";
+import Searchbar from "./ui/Searchbar";
 import { debounce } from "lodash";
-import { useAppDispatch } from "@/app/hooks";
-import { searchSongs } from "@/features/songSlice";
+import { useAppDispatch } from "../app/hooks";
+import { searchSongs } from "../features/songSlice";
 
 const Sidebar = () => {
   const navigate = useNavigate();
