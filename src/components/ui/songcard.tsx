@@ -37,7 +37,7 @@ const SongCard = (props: AudioProps) => {
           </div>
         </div>
         <CardDescription>
-         <div className="mt-3 -mb-5 text-base text-accent italic"> {trackName}</div> <br />
+         <div className="mt-3 -mb-5 text-base  text-accent italic"> {trackName}</div> <br />
           {artistName}
         </CardDescription>
       </CardContent>

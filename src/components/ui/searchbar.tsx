@@ -20,9 +20,7 @@ const Searchbar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
         placeholder={placeholder || "Search songs, playlist & artist"}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSearch(e)}
       />
-      {/* <button type="submit" className="absolute right-0 top-0 mr-8 mt-6"> */}
-
-      {/* </button> */}
+     
     </div>
   );
 };

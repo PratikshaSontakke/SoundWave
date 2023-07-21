@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { z } from "zod"; // Import zod
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./helper";
-import { Card, CardContent, CardTitle } from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+import { Button } from "../../components/ui/Button";
+import { Card, CardContent, CardTitle } from "../../components/ui/Card";
+import { Input } from "../../components/ui/Input";
 
 
 type FormSchemaType = z.infer<typeof schema>;

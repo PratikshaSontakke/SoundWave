@@ -1,8 +1,9 @@
-import { useAppSelector } from "@/app/hooks";
-import { RootState } from "@/app/store";
-import Sidebar from "@/components/Sidebar";
-import Player from "@/components/player/Player";
+
 import { Outlet } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import { RootState } from "../app/store";
+import Player from "../components/player/Player";
+import Sidebar from "../components/Sidebar";
 
 const ProtectedLayout = () => {
 
