@@ -1,4 +1,4 @@
-import Banner from "../../assets/Images/Sound Wave-logos_black.png";
+import Banner from "../Images/Sound Wave-logos_black.png"
 function Logo() {
   return (
     <div className="logo h-25 w-25 -mt-10">

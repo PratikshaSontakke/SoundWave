@@ -1,18 +1,28 @@
 import { Search } from "lucide-react";
-import { Input } from "./input";
+import { Input } from "./Input";
 
-const Searchbar = () => {
+interface SearchBarProps {
+  onSearch: (e: any) => void;
+  placeholder?: string;
+}
+
+const Searchbar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
   return (
-    <div className="relative pt-2 mx-auto -mt-2 md:w-full md:ml-20 md:mr-20">
+    <div className="relative block">
+      <span className="sr-only">Search</span>
+      <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+        <Search size={20} />
+      </span>
       <Input
-        className=" focus-visible:ring-transparent h-10 px-5 pr-16 text-sm focus:outline-none border-b-2 border-accent"
+        className="placeholder:italic py-2 pl-9 pr-3 placeholder:text-slate-400 block w-64 focus-visible:ring-transparent text-sm focus:outline-none border-b-2 border-accent"
         type="search"
         name="search"
-        placeholder="Search songs, playlist & artist"
+        placeholder={placeholder || "Search songs, playlist & artist"}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSearch(e)}
       />
-      <button type="submit" className="absolute right-0 top-0 mr-8 mt-6">
-        <Search size={20} />
-      </button>
+      {/* <button type="submit" className="absolute right-0 top-0 mr-8 mt-6"> */}
+
+      {/* </button> */}
     </div>
   );
 };

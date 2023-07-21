@@ -1,12 +1,13 @@
 import { Controller, useForm } from "react-hook-form";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent, CardTitle } from "../../components/ui/card";
 import { z } from "zod"; // Import zod
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./helper";
+import { Card, CardContent, CardTitle } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+
 
 type FormSchemaType = z.infer<typeof schema>;
 
