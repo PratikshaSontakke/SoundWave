@@ -1,12 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "types": ["vite/client"]
+  },
+  "include": ["src"],
+  "references": [{ "path": "tsconfig.node.json" }]
+}
+
+
+
 // {
 //   "compilerOptions": {
 //     "target": "ES2020",
 //     "useDefineForClassFields": true,
-//     "lib": [
-//       "ES2020",
-//       "DOM",
-//       "DOM.Iterable"
-//     ],
+//     "lib": ["ES2020", "DOM", "DOM.Iterable"],
 //     "module": "ESNext",
 //     "skipLibCheck": true,
 //     /* Bundler mode */
@@ -20,54 +45,12 @@
 //     "strict": true,
 //     "noUnusedLocals": true,
 //     "noUnusedParameters": true,
-//     "noFallthroughCasesInSwitch": true
-//   },
-//   "include": [
-//     "src/**/*.ts"
-//   ],
-//   "references": [
-//     {
-//       "path": "./tsconfig.node.json"
+//     "noFallthroughCasesInSwitch": true,
+//     "baseUrl": "./src",
+//     "paths" :{
+//       "@/*":["./src/*"]
 //     }
-//   ],
-//   "baseUrl": "./",
-//   "paths": {
-//     "src/*": [
-//       "./src/*"
-//     ],
-//     "components/*": [
-//       "./src/components/*"
-//     ],
-//     // We define this path for the index.ts file inside the 
-//     // components folder:
-//     "components": [
-//       "./src/components"
-//     ],
-//   }
+//   },
+//   "include": ["src"],
+//   "references": [{ "path": "./tsconfig.node.json" }]
 // }
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "paths" :{
-      "@/*":["./src/*"]
-    }
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
-}
