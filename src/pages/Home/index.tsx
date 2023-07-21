@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import {
   getSongs,
   searchSongs,
   setCurrentSong,
   setIsPlaying,
-} from "../../features/songSlice";
+} from "@/features/songSlice";
 import { debounce } from "lodash";
 import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
-import Searchbar from "../../components/ui/Searchbar";
-import Loader from "../../components/ui/Loader";
-import { Button } from "../../components/ui/Button";
-import SongCard from "../../components/ui/SongCard";
+import { RootState } from "@/app/store";
+import Searchbar from "@/components/ui/Searchbar";
+import Loader from "@/components/ui/Loader";
+import { Button } from "@/components/ui/Button";
+import SongCard from "@/components/ui/SongCard";
 
 
 

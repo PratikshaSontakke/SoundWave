@@ -1,10 +1,14 @@
 import { Volume1, Volume2, VolumeX } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
-import { PlayerControls } from "../ui/PlayerControls";
-import { setCurrentSong, setIsPlaying } from "../../features/songSlice";
+
+
+
+
 import { useEffect, useRef, useState } from "react";
 import { formatTime } from "./helper";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { RootState } from "@/app/store";
+import { setCurrentSong, setIsPlaying } from "@/features/songSlice";
+import { PlayerControls } from "../ui/PlayerControls";
 
 const Player = () => {
   const [volume, setVolume] = useState(0.3);
