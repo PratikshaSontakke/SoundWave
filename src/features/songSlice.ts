@@ -1,5 +1,5 @@
 
-import { PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getSongList } from '@/apis/SongApi';
 
 interface SongsState {
@@ -20,31 +20,35 @@ const initialState: SongsState = {
     error: ""
 };
 
-interface SongProps{
+interface SongProps {
     trackId: string;
     artworkUrl100: string;
     trackName: string;
     previewUrl: string;
     artistName: string;
+    releaseDate: Date;
+    primaryGenreName: string;
 }
 
 
 export const getSongs = createAsyncThunk("songs/getSongs", async (offset: number) => {
-    const data = await getSongList({offset});
+    const data = await getSongList({ offset });
     return data.results.map((song: SongProps) => ({
         id: song.trackId,
-        imageUrl: song.artworkUrl100.replace("100x100","900x900"),
+        imageUrl: song.artworkUrl100.replace("100x100", "900x900"),
         trackName: song.trackName,
         songUrl: song.previewUrl,
         artistName: song.artistName,
+        releaseDate: song.releaseDate,
+        primaryGenreName: song.primaryGenreName
     }));
 });
 
 export const searchSongs = createAsyncThunk("songs/searchSongs", async (searchTerm: string) => {
-    const data = await getSongList({searchTerm})
+    const data = await getSongList({ searchTerm })
     return data.results.map((song: SongProps) => ({
         id: song.trackId,
-        imageUrl: song.artworkUrl100.replace("100x100","900x900"),
+        imageUrl: song.artworkUrl100.replace("100x100", "900x900"),
         trackName: song.trackName,
         songUrl: song.previewUrl,
         artistName: song.artistName,
@@ -55,26 +59,26 @@ const songSlice = createSlice({
     name: 'song',
     initialState,
     reducers: {
-        setIsPlaying: (state, action:PayloadAction<boolean>) => {
+        setIsPlaying: (state, action: PayloadAction<boolean>) => {
             state.isPlaying = action.payload;
         },
-        setCurrentSong:(state,action:PayloadAction<Song>)=>{
+        setCurrentSong: (state, action: PayloadAction<Song>) => {
             state.currentSong = action.payload;
         }
     },
-    
+
     extraReducers: builder => {
         builder
             .addCase(getSongs.pending, (state) => {
-                state.loading=true;
+                state.loading = true;
                 state.status = 'loading';
             })
             .addCase(getSongs.fulfilled, (state, action) => {
                 state.loading = false;
                 state.songs.push(...action.payload);
             })
-            .addCase(getSongs.rejected, (state, action)=>{
-                state.loading=false;
+            .addCase(getSongs.rejected, (state, action) => {
+                state.loading = false;
                 state.error = action.error.message as string
             })
             .addCase(searchSongs.pending, (state) => {

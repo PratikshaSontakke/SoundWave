@@ -4,4 +4,6 @@ interface Song {
     songUrl: string;
     imageUrl: string;
     artistName: string;
+    releaseDate:string;
+    primaryGenreName: string;
 }
