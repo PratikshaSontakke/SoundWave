@@ -4,11 +4,11 @@ import { Volume1, Volume2, VolumeX } from "lucide-react";
 
 
 import { useEffect, useRef, useState } from "react";
-import { formatTime } from "./helper";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { RootState } from "@/app/store";
 import { setCurrentSong, setIsPlaying } from "@/features/songSlice";
 import { PlayerControls } from "../ui/PlayerControls";
+import { formatTime } from "@/helper/helper";
 
 const Player = () => {
   const [volume, setVolume] = useState(0.3);
@@ -68,7 +68,7 @@ const Player = () => {
 
   return (
     <div className="sm:px-12 px-8 w-full flex items-center justify-between rounded-lg md:justify-around bg-gradient-to-r from-accent to-black h-20">
-      <div className="flex gap-5">
+      <div className="flex">
         <img
           src={currentSong?.imageUrl}
           alt="song"

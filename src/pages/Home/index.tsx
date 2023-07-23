@@ -14,8 +14,6 @@ import Loader from "@/components/ui/Loader";
 import { Button } from "@/components/ui/Button";
 import SongCard from "@/components/ui/SongCard";
 
-
-
 function Home() {
   const songList = useAppSelector((state) => state.song.songs);
   const { isPlaying, currentSong, loading } = useSelector(
@@ -28,7 +26,7 @@ function Home() {
   const MAX_OFFSET = 15;
 
   useEffect(() => {
-   dispatch(getSongs(offset));
+    dispatch(getSongs(offset));
   }, [offset]);
 
   useEffect(() => {
@@ -46,7 +44,6 @@ function Home() {
     searchDebounce(searchValue);
   };
 
-
   return (
     <>
       <div className="hidden md:flex lg:flex ml-10 pt-2 py-8 justify-center fixed z-10">
@@ -56,10 +53,7 @@ function Home() {
         <Loader />
       ) : (
         <>
-          
           <div className="grid mt-20 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 ml-5 mr-5">
-
-          
             {songList.map((item: any, index: any) => {
               return (
                 <SongCard
@@ -83,21 +77,26 @@ function Home() {
           </div>
         </>
       )}
-      {songList.length ? 
-      <div className="flex justify-center mt-5 mb-1">
-            {offset < MAX_OFFSET ? (
-              <Button
-                variant="outline"
-                onClick={() => setOffset((prev) => prev + 1)}
-              >
-                Load More
-              </Button>
-            ) : (
-              <Button variant="outline" onClick={() => window.scrollTo(0, 0)}>
-                Scroll to Top
-              </Button>
-            )}
-          </div>:<div className="flex justify-center mt-5 mb-1">No results found</div>}
+      {songList.length ? (
+        <div className="flex justify-center mt-5 mb-1">
+          {offset < MAX_OFFSET ? (
+            <Button
+              variant="outline"
+              onClick={() => setOffset((prev) => prev + 1)}
+            >
+              Load More
+            </Button>
+          ) : (
+            <Button variant="outline" onClick={() => window.scrollTo(0, 0)}>
+              Scroll to Top
+            </Button>
+          )}
+        </div>
+      ) : (
+        <div className="flex justify-center min-h-[600px]">
+          No results found
+        </div>
+      )}
     </>
   );
 }
