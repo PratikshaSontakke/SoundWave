@@ -1,20 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Menu, Power } from "lucide-react";
+import { Power } from "lucide-react";
 import Cookies from "js-cookie";
-import {
-  Sheet,
-  SheetTrigger,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "./ui/Sheet";
-
-import Logo from "../assets/Logo/Logo";
-import Searchbar from "./ui/Searchbar";
-import { debounce } from "lodash";
-import { useAppDispatch } from "../app/hooks";
-import { searchSongs } from "../features/songSlice";
+import Banner from "../assets/Images/Sound Wave-logos_black.png";
 import { Button } from "./ui/Button";
 
 const Sidebar = () => {
@@ -24,60 +11,19 @@ const Sidebar = () => {
     //Reloads page
     navigate(0);
   };
-  const dispatch = useAppDispatch();
-
-  const searchDebounce = debounce((searchValue: string) => {
-    dispatch(searchSongs(searchValue));
-  }, 400);
-
-  const handleSearchSong = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value;
-    searchDebounce(searchValue);
-  };
 
   return (
-    <header className="sticky top-0">
-      <div className="md:flex hidden flex-col w-[200px] min-h-screen py-10 px-4 bg-card justify-between">
-        <Logo />
+    <header className="sticky top-0 md:flex hidden flex-col min-h-screen py-5 px-4 bg-card justify-between items-center">
+      <img src={Banner} alt="SoundWave" className="md:w-36 sm:w-7" />
 
-        <div>
-          {" "}
-          <Button
-            variant={"outline"}
-            className="flex gap-2"
-            onClick={() => logoutHandler()}
-          >
-            <Power size={20} />
-            <span>Logout</span>
-          </Button>
-        </div>
-      </div>
-
-      <Sheet>
-        <div className="container -mt-14 py-2 flex justify-between items-center md:hidden fixed">
-          <Searchbar onSearch={handleSearchSong} />
-          <SheetTrigger className="">
-            <Menu />
-          </SheetTrigger>
-        </div>
-        <SheetContent side={"bottom"}>
-          <SheetHeader>
-            <SheetTitle>
-              <Logo />
-            </SheetTitle>
-            <SheetDescription className="flex justify-center">
-              <Button
-                variant={"outline"}
-                className="flex gap-2"
-                onClick={() => logoutHandler()}
-              >
-                <Power size={20} />
-                <span>Logout</span>
-              </Button>
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
+      <Button
+        variant={"outline"}
+        className="flex gap-2 w-[80%]"
+        onClick={() => logoutHandler()}
+      >
+        <Power size={20} />
+        <span>Logout</span>
+      </Button>
     </header>
   );
 };

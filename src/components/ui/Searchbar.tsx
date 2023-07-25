@@ -1,7 +1,6 @@
 import { Search } from "lucide-react";
 import { Input } from "./Input";
 
-
 interface SearchBarProps {
   onSearch: (e: any) => void;
   placeholder?: string;
@@ -9,9 +8,9 @@ interface SearchBarProps {
 
 const Searchbar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
   return (
-    <div className="relative block">
+    <div className="relative pt-2">
       <span className="sr-only">Search</span>
-      <span className="absolute  inset-y-0 left-0 flex items-center pl-2">
+      <span className="absolute pb-4 inset-y-0 left-0 flex items-center pl-2">
         <Search size={20} />
       </span>
       <Input
@@ -21,7 +20,6 @@ const Searchbar: React.FC<SearchBarProps> = ({ onSearch, placeholder }) => {
         placeholder={placeholder || "Search songs, playlist & artist"}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSearch(e)}
       />
-     
     </div>
   );
 };
