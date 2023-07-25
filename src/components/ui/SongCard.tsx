@@ -1,4 +1,4 @@
-import { BadgeInfo } from "lucide-react";
+import { Info } from "lucide-react";
 import { Card, CardContent, CardDescription } from "./Card";
 import { PlayPause } from "./PlayPause";
 import {
@@ -53,7 +53,7 @@ const SongCard = (props: AudioProps) => {
         <div className="flex justify-end">
           <Dialog>
             <DialogTrigger>
-              <BadgeInfo color="gray" />
+              <Info color="gray" />
             </DialogTrigger>
             <DialogContent className="flex justify-center flex-col">
               <DialogDescription>
@@ -72,10 +72,7 @@ const SongCard = (props: AudioProps) => {
                 <span className="font-semibold"> Genre Name:&nbsp;</span>{" "}
                 {primaryGenreName}
                 <br />
-                <span className="font-semibold">
-                
-                  Release Date:&nbsp;
-                </span>
+                <span className="font-semibold">Release Date:&nbsp;</span>
                 {convertTimestamp(releaseDate) || "Not available"}
               </DialogDescription>
               <div className="flex justify-center items-center border rounded-full h-10 w-10 bg-accent ml-auto">
