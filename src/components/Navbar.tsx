@@ -15,7 +15,7 @@ import { Button } from "./ui/Button";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-export const Navbar = () => {
+ const Navbar = () => {
   const dispatch = useAppDispatch();
   const searchDebounce = debounce((searchValue: string) => {
     dispatch(setSearchParam(searchValue));
@@ -62,3 +62,5 @@ export const Navbar = () => {
     </div>
   );
 };
+
+export default Navbar
